@@ -1,0 +1,141 @@
+--root{
+    --fsz: 20px;
+    --fszSmall: 15px;
+}
+
+html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-attachment: scroll;
+    background-color: grey;
+    background-size: auto;
+    margin: 0;
+    color: white;
+    font-size: var(--fszSmall);
+}
+
+form{
+    width: 90%;
+    margin: 0 auto;
+}
+input{
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+textarea{
+    box-sizing: border-box;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: var(--fszSmall);
+}
+
+button{
+    background-color: white;
+    border: 3px solid black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 3px 6px;
+    border-radius: 15px;
+    font-size: var(--fszSmall);
+}
+
+input{
+    width: 98%;
+}
+textarea{
+    width: 98%;
+}
+
+.cont{
+    background-color: #444444aa;
+    margin: 15px auto;
+    padding: 6px;
+    border-radius: 15px;
+    border: 3px solid #ffffff77;
+    width: 90%;
+}
+
+.el{
+    display: inline-block;
+    width: 25%;
+}
+
+.tx{
+    display: inline-block;
+    width: 73%;
+}
+
+#title{
+    color: white;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.bt{
+    background: linear-gradient(0deg,black,#33aa88); 
+    border-radius: 15px;
+    text-align: center;
+    padding: 2%;
+    width: 40%;
+    height: 10%;
+    margin: 0 auto;
+}
+
+.logo{
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    height: 225px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.b-item{
+    width: 100%;
+    text-align: center;
+    margin: 8px auto;
+}
+
+.list-container{
+    margin-top: 10px;
+}
+.list-item-b {
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.list-item {
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.list-item input[type="text"] {
+    vertical-align: middle;
+    width: 90%;
+    display: inline-block;
+}
+.list-item i {
+    vertical-align: middle;
+    padding: 3px 0;
+    display: inline-block;
+}
+.list-item-b input[type="text"] {
+    vertical-align: middle;
+    width: 90%;
+    display: inline-block;
+}
+.list-item-b i {
+    vertical-align: middle;
+    padding: 3px 0;
+    display: inline-block;
+}
+.side{
+    width: 49%;
+    display: inline-block;
+}

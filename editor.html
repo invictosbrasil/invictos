@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <title>Gideone</title>
+    </head>
+    <body id="body">
+        <form>
+            <p>
+                <label>Telefone</label><br><input id="tel" type="tel"/>
+                <label>Pano de fundo</label><br><input id="back" type="text"/>
+                
+            </p>
+            <br>
+            <hr width="80%">
+            <div id="banners"></div>
+            <hr width="80%">
+            <br>
+            <div id="list-container">
+                <!-- List items will be added dynamically here -->
+            </div>
+            <p>
+                <div class="bt" id="add-banner-btn">Novo banner</div>
+            </p>
+            <div class="bt" id="add-item-btn">Novo item</div>
+            <p>
+                <div class="bt" id="btSave">Salvar</div>
+            </p>
+        </form>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyBMBIegCL4zOv-BH53l6PKzeacGDbKr9ns",
+              authDomain: "paginagil-4a561.firebaseapp.com",
+              projectId: "paginagil-4a561",
+              storageBucket: "paginagil-4a561.appspot.com",
+              messagingSenderId: "717335538245",
+              appId: "1:717335538245:web:1dbe76eb155565df51512c",
+              measurementId: "G-4E18SYSWX4"
+            };
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+          </script>
+          <script src="app.js" type="module"></script>
+    </body>
+</html>
