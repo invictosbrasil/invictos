@@ -48,6 +48,7 @@ function createItem(msg){
   var divPic = document.createElement('div');
   divPic.setAttribute("class","el");
   var img = document.createElement('img');
+  img.style.borderRadius="12px";
   img.setAttribute("class","icon");
   img.setAttribute("width","82");
   img.setAttribute("height","82");

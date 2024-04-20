@@ -15,7 +15,7 @@ body{
     background-color: grey;
     background-size: auto;
     margin: 0;
-    color: white;
+    color: black;
     font-size: var(--fszSmall);
 }
 
@@ -53,11 +53,10 @@ textarea{
 }
 
 .cont{
-    background-color: #444444aa;
+    background: linear-gradient(90deg, white,white, #ffffff77);
     margin: 15px auto;
     padding: 6px;
     border-radius: 15px;
-    border: 3px solid #ffffff77;
     width: 90%;
 }
 
