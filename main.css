@@ -45,6 +45,11 @@ button{
     font-size: var(--fszSmall);
 }
 
+#editModeBox{
+    width: 20px;
+    height: 20px;
+}
+
 input{
     width: 98%;
 }
@@ -85,6 +90,10 @@ textarea{
     padding: 6px;
     border-radius: 15px;
     width: 90%;
+}
+.edit-mode{
+    border: 3px dashed red;
+    background-color: rgba(red, 0, 0, 0.3);
 }
 
 .el{

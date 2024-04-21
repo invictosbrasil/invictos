@@ -26,11 +26,117 @@ const database = getDatabase();
 const email = "aapp@lima.com";
 const password = "22gcb367wwbd9";
 
-var fundo = document.getElementById('fundo');
 
+var isEditMode = false;
+var draggedItem = null;
+var touchStartY = 0;
 
+function toggleEditMode() {
+  isEditMode = !isEditMode;
+  const container = document.getElementById('list-container');
+  if (isEditMode) {
+      container.classList.add('edit-mode');
+      container.addEventListener('dragstart', handleDragStart);
+      container.addEventListener('dragover', handleDragOver);
+      container.addEventListener('drop', handleDrop);
+  } else {
+      container.classList.remove('edit-mode');
+      container.removeEventListener('dragstart', handleDragStart);
+      container.removeEventListener('dragover', handleDragOver);
+      container.removeEventListener('drop', handleDrop);
+  }
+}
+document.getElementById('editModeBox').addEventListener('change',toggleEditMode);
+    function handleTouchStart(e) {
+        draggedItem = e.currentTarget;
+        touchStartY = e.touches[0].clientY;
+    }
+
+    function handleTouchMove(e) {
+        const touchEndY = e.touches[0].clientY;
+        const deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaY) > 10 && isEditMode) {
+            e.preventDefault();
+            draggedItem.style.transform = `translateY(${deltaY}px)`;
+        }
+    }
+
+    function handleTouchEnd(e) {
+        if (draggedItem) {
+            draggedItem.style.transform = '';
+            const container = document.getElementById('list-container');
+            const items = Array.from(container.children);
+            const draggedIndex = items.indexOf(draggedItem);
+
+            let newIndex = draggedIndex;
+            if (Math.abs(touchStartY - e.changedTouches[0].clientY) > 50) {
+                newIndex = touchStartY < e.changedTouches[0].clientY ? draggedIndex + 1 : draggedIndex - 1;
+            }
+
+            if (newIndex !== draggedIndex && newIndex >= 0 && newIndex < items.length) {
+                container.insertBefore(draggedItem, items[newIndex]);
+            }
+
+            draggedItem = null;
+        }
+    }
+
+    function createListItem(msg) {
+        var father = document.createElement('div');
+        father.classList.add('draggable');
+
+        var lb = document.createElement('label');
+        lb.innerHTML = msg.tag;
+
+        var listItem = document.createElement('div');
+        listItem.classList.add(msg.cont);
+
+        var inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.classList.add(msg.lk);
+        inputField.placeholder = 'Link para a imagem';
+        inputField.value = msg.link;
+
+        var deleteCheckbox = document.createElement('i');
+        deleteCheckbox.classList.add('material-icons');
+        deleteCheckbox.style = 'font-size:36px;color:white;';
+        deleteCheckbox.innerHTML = "delete";
+
+        var listItem2 = document.createElement('div');
+        listItem2.classList.add(msg.cont);
+
+        var inputField2 = document.createElement('input');
+        inputField2.type = 'text';
+        inputField2.classList.add(msg.d);
+        inputField2.value = msg.desc;
+        inputField2.placeholder = 'Descrição a imagem';
+
+        father.addEventListener('touchstart', handleTouchStart);
+        father.addEventListener('touchmove', handleTouchMove);
+        father.addEventListener('touchend', handleTouchEnd);
+
+        deleteCheckbox.addEventListener("click", function () {
+            let result = confirm("Deseja mesmo apagar?");
+            if (result === true) {
+                father.remove();
+            }
+        });
+
+        listItem.appendChild(inputField);
+        listItem.appendChild(deleteCheckbox);
+        listItem2.appendChild(inputField2);
+
+        father.appendChild(lb);
+        father.appendChild(listItem);
+        father.appendChild(listItem2);
+
+        document.getElementById(msg.pid).appendChild(father);
+    }
+/*
 function createListItem(msg) {
   var father = document.createElement('div');
+  father.setAttribute("draggable","true");
   var lb = document.createElement('label');
   lb.innerHTML=msg.tag;
 
@@ -60,6 +166,13 @@ function createListItem(msg) {
 
   inputField2.placeholder = 'Descrição a imagem';
 
+  father.addEventListener('touchstart', (event)=>{
+    handleTouchStart(event);
+  });
+  father.addEventListener('touchmove', (event)=>{
+    handleTouchMove(event);
+  });
+
   deleteCheckbox.addEventListener("click",function(){
     let result = confirm("Deseja mesmo apagar?");
     if(result === true){
@@ -76,6 +189,9 @@ function createListItem(msg) {
       }
   });
 
+  listItem.setAttribute("draggable","false");
+  listItem2.setAttribute("draggable","false");
+  lb.setAttribute("draggable","false");
   listItem.appendChild(inputField);
   listItem.appendChild(deleteCheckbox);
   listItem2.appendChild(inputField2);
@@ -86,7 +202,7 @@ function createListItem(msg) {
 
   document.getElementById(msg.pid).appendChild(father);
 }
-
+*/
 // Add event listener to the "Add Item" button
 document.getElementById('add-item-btn').addEventListener('click', function() {
   event.preventDefault();
@@ -223,4 +339,3 @@ function setupButton(){
 }
 
 window.addEventListener('load',setupButton);
-
