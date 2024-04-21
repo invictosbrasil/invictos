@@ -42,6 +42,17 @@ signInWithEmailAndPassword(auth,email, password)
     // ...
   });
 
+function closeOverlay() {
+  var imageOverlay = document.getElementById('image-overlay');
+  imageOverlay.removeChild(imageOverlay.lastChild);
+  imageOverlay.style.display = 'none';
+}
+
+var btclose = document.getElementById('bt-close');
+btclose.addEventListener('click', ()=>{
+  closeOverlay();
+});
+
 function createItem(msg){
   var father = document.createElement('div');
   father.setAttribute("class","cont");
@@ -57,14 +68,24 @@ function createItem(msg){
   var divTex = document.createElement('div');
   divTex.setAttribute("class","tx");
   divTex.innerHTML=msg.desc;
-
+  
   var main = document.getElementById('main');
-
+  var imageOverlay = document.getElementById('image-overlay');
+  
   divPic.appendChild(img);
+  img.addEventListener('click', () => {
+    imageOverlay.style.display = 'flex';
+    var big = document.createElement('img');
+    big.src=msg.link;
+    big.setAttribute("width","300");
+    big.setAttribute("height","300");
+    imageOverlay.appendChild(big);
+  });
+
   father.appendChild(divPic);
   father.appendChild(divTex);
 
-  father.addEventListener('click',function(){
+  divTex.addEventListener('click',function(){
     var txt = divTex.innerHTML;
     var u="https://wa.me/"+phone+"?text=Me%20interessei%20por%20este%20produto:%20"+txt.replaceAll(' ',"%20");
     window.location.href = u;
